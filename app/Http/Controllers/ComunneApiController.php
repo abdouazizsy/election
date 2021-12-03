@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Commune;
 use Illuminate\Http\Request;
 
 class ComunneApiController extends Controller
@@ -13,7 +14,8 @@ class ComunneApiController extends Controller
      */
     public function index()
     {
-        //
+        $datas= Commune::all();
+        return $datas;
     }
 
     /**
@@ -21,9 +23,12 @@ class ComunneApiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $commune = new Commune();
+        $commune->code = $request->code;
+        $commune->libelle = $request->libelle;
+        Commune::create($commune);
     }
 
     /**
@@ -43,9 +48,9 @@ class ComunneApiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Commune $commune)
     {
-        //
+        return $commune;
     }
 
     /**

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ComunneApiController;
 use App\Http\Controllers\RegionApiController;
 use App\Http\Controllers\RegionController;
 use App\Models\Region;
@@ -24,4 +25,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::resource('regions', RegionApiController::class,[
     'only' => ['create', 'show','index','destroy']
 ]);
-
+Route::resource('communes', ComunneApiController::class,[
+    'only' => ['create', 'show','index','destroy']
+]);

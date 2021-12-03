@@ -21,7 +21,7 @@ class Commune extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function region(): BelongsTo
+    public function regions(): BelongsTo
     {
         return $this->belongsTo(Region::class);
     }
