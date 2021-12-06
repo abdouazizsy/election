@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Annee;
 use Illuminate\Http\Request;
 
-class AnnneVoteController extends Controller
+class CitoyensApiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +40,10 @@ class AnnneVoteController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Anneevote  $anneevote
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Annee $annee)
+    public function show($id)
     {
         //
     }
@@ -52,10 +51,10 @@ class AnnneVoteController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Anneevote  $anneevote
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Annee $annee)
+    public function edit($id)
     {
         //
     }
@@ -64,10 +63,10 @@ class AnnneVoteController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Anneevote  $anneevote
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Annee $annee)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +74,10 @@ class AnnneVoteController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Anneevote  $anneevote
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Annee $annee)
+    public function destroy($id)
     {
         //
     }

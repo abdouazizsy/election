@@ -14,7 +14,8 @@ class DepartementController extends Controller
      */
     public function index()
     {
-        //
+        $datas= Departement::all();
+        return $datas;
     }
 
     /**
@@ -46,7 +47,7 @@ class DepartementController extends Controller
      */
     public function show(Departement $departement)
     {
-        //
+       return $departement;
     }
 
     /**

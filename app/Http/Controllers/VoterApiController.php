@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Electeur;
+use App\Models\Voter;
 use Illuminate\Http\Request;
 
-class ElecteurController extends Controller
+class VoterApiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,8 @@ class ElecteurController extends Controller
      */
     public function index()
     {
-        //
+        $datas= Voter::all();
+        return $datas;
     }
 
     /**
@@ -41,21 +42,21 @@ class ElecteurController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Electeur  $electeur
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Electeur $electeur)
+    public function show(Voter $voter)
     {
-        //
+        return $voter;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Electeur  $electeur
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Electeur $electeur)
+    public function edit($id)
     {
         //
     }
@@ -64,10 +65,10 @@ class ElecteurController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Electeur  $electeur
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Electeur $electeur)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +76,10 @@ class ElecteurController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Electeur  $electeur
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Electeur $electeur)
+    public function destroy($id)
     {
         //
     }

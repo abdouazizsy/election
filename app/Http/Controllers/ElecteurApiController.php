@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ListeElectoral;
+use App\Models\Electeur;
 use Illuminate\Http\Request;
 
-class ListElectoralController extends Controller
+class ElecteurApiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class ListElectoralController extends Controller
      */
     public function index()
     {
-        $datas= ListeElectoral::all();
+        $datas= Electeur::all();
         return $datas;
     }
 
@@ -23,18 +23,9 @@ class ListElectoralController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
-        $liste = new ListeElectoral();
-        $liste->nom_liste = $request->nom_liste;
-        $liste->code = $request->code;
-        $liste->representant_nom = $request->representant_nom;
-        $liste->representant_prenom = $request->representant_prenom;
-        $liste->representant_cni = $request->representant_cni;
-        $liste->representant_adresse = $request->representant_adresse;
-        $liste->representant_datenaissance = $request->representant_datenaissance;
-        $liste->commune_id = $request->commune_id;
-        ListeElectoral::create($liste);
+        //
     }
 
     /**
@@ -54,9 +45,9 @@ class ListElectoralController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(ListeElectoral $listeElectoral)
+    public function show(Electeur $electeur)
     {
-        return $listeElectoral;
+        return $electeur;
     }
 
     /**

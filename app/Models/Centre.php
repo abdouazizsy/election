@@ -5,24 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-class ListeElectoral extends Model
+class Centre extends Model
 {
     protected $fillable=[
-        'nom_liste',
         'code',
-        'representant_nom',
-        'representant_prenom',
-        'representant_cni',
-        'representant_adresse',
-        'representant_datenaissance',
+        'libelle',
         'commune_id',
     ];
+
      /**
-     * Get the representant that owns the commune
+     * Get the typeProgramme that owns the Programme
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function commune():BelongsTo
+    public function communes(): BelongsTo
     {
         return $this->belongsTo(Commune::class);
     }
