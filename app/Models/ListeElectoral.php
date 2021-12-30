@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-
+use App\Models\Comm;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -15,15 +15,28 @@ class ListeElectoral extends Model
         'representant_cni',
         'representant_adresse',
         'representant_datenaissance',
-        'commune_id',
+        'photo',
+        'comm_id',
     ];
+
      /**
      * Get the representant that owns the commune
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function commune():BelongsTo
+    public function comm()
     {
-        return $this->belongsTo(Commune::class);
+        return $this->belongsTo(Comm::class);
     }
+
+     /**
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function voters()
+    {
+        return $this->hasMany(Voter::class);
+    }
+
+
 }

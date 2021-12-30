@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\VoterResource;
 use App\Models\Voter;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-
+header("Access-Control-Allow-Methods: GET, OPTIONS, POST");
 class VoterApiController extends Controller
 {
     /**
@@ -14,7 +16,7 @@ class VoterApiController extends Controller
      */
     public function index()
     {
-        $datas= Voter::all();
+        $datas= VoterResource::collection(Voter::all());
         return $datas;
     }
 
@@ -36,7 +38,23 @@ class VoterApiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $datas= Voter::where('electeur_id',$request->electeur_id)->first();
+        if($datas)
+        {
+            return 1;
+        }
+        else
+        {
+            $vote=new Voter();
+            $vote->electeur_id=$request->electeur_id;
+            $vote->listeelectoral_id=$request->listeelectoral_id;
+            $vote->annee_id=$request->annee_id;
+            $vote->save();
+        }
+
+
+
     }
 
     /**
@@ -83,4 +101,25 @@ class VoterApiController extends Controller
     {
         //
     }
+
+
+
+     /**
+     * count nombre vote pour chaque candidats
+     *
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function countvotes()
+    {
+
+        $user_info = DB::table('voters')
+                 ->select('listeelectoral_id', DB::raw('count(*) as total'))
+                 ->groupBy('listeelectoral_id')
+                 ->get();
+                 return $user_info;
+    }
+
+
+
 }

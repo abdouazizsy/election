@@ -14,7 +14,7 @@ class RegionApiController extends Controller
      */
     public function index()
     {
-        $datas= Region::all();
+        $datas= Region::with('commune')->get();
         return $datas;
     }
 

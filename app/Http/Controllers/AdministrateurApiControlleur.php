@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Electeur;
+use App\Models\Administrateur;
 use Illuminate\Http\Request;
-header("Access-Control-Allow-Methods: GET, OPTIONS, POST, PUT");
-class ElecteurApiController extends Controller
+header("Access-Control-Allow-Methods: GET, OPTIONS, POST");
+class AdministrateurApiControlleur extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,7 @@ class ElecteurApiController extends Controller
      */
     public function index()
     {
-        $datas= Electeur::with('comm')->get();
-        return $datas;
+        //
     }
 
     /**
@@ -23,9 +22,9 @@ class ElecteurApiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
-
+        //
     }
 
     /**
@@ -36,19 +35,7 @@ class ElecteurApiController extends Controller
      */
     public function store(Request $request)
     {
-
-        $electeur=new Electeur();
-        $electeur->prenom=$request->prenom;
-        $electeur->nom=$request->nom;
-        $electeur->datenaissance=$request->datenaissance;
-        $electeur->adresse=$request->adresse;
-        $electeur->cni=$request->cni;
-        $electeur->comm_id=$request->comm_id;
-        $electeur->save();
-        return response()->json([
-         'message' => "Successfully created",
-         'success' => true
-     ], 200);
+        //
     }
 
     /**
@@ -57,9 +44,9 @@ class ElecteurApiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Electeur $electeur)
+    public function show($id)
     {
-        return $electeur;
+        //
     }
 
     /**
@@ -82,8 +69,7 @@ class ElecteurApiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $electeur=$request->all();
-        Electeur::find($id)->update($electeur);
+        //
     }
 
     /**
@@ -96,24 +82,10 @@ class ElecteurApiController extends Controller
     {
         //
     }
-
-     /**
-     * get the electeur
-     *
-     * @param  string  $cni
-     * @return \Illuminate\Http\Response
-     */
-    public function findelecteur(string $cni)
+    public function findAdministrateur(string $email,string $mdp)
     {
-        $datas= Electeur::where('cni',$cni)->with('comm')->first();
-        if($datas)
-        {
-           return $datas;
-        }
-        else{
-            return [];
-        }
 
+        $datas= Administrateur::where('email',$email)->where('mdp',$mdp)->first();
+        return $datas;
     }
-
 }

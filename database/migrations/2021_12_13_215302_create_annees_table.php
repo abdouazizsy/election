@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateElecteursTable extends Migration
+class CreateAnneesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,11 @@ class CreateElecteursTable extends Migration
      */
     public function up()
     {
-        Schema::create('electeurs', function (Blueprint $table) {
+        Schema::create('annees', function (Blueprint $table) {
             $table->id();
-            $table->string('nom',70);
-            $table->string('prenom',100);
-            $table->dateTime('datenaissance');
-            $table->string('adresse');
-            $table->string('cni');
-            $table->foreignId('centre_id')->constrained();
+            $table->string('code',70);
+            $table->string('libelle',100);
+            $table->boolean('encours')->default(0);
             $table->timestamps();
         });
     }
@@ -32,6 +29,6 @@ class CreateElecteursTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('electeurs');
+        Schema::dropIfExists('annees');
     }
 }

@@ -14,15 +14,16 @@ class Electeur extends Model
         'datenaissance',
         'adresse',
         'cni',
-        'centre_id',
+        'comm_id',
     ];
-    /**
+     /**
      * Get the Electeur that owns the Centre
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function centres(): BelongsTo
+    public function comm(): BelongsTo
     {
-        return $this->belongsTo(Centre::class);
+        return $this->belongsTo(Comm::class);
     }
+
 }

@@ -5,14 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Region extends Model
+class Annee extends Model
 {
     protected $fillable=[
         'code',
         'libelle',
+        'encours',
     ];
-    public function commune()
-    {
-        return $this->hasMany(Commune::class);
-    }
 }

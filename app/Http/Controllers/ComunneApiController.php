@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Centre;
+use App\Models\Comm;
 use App\Models\Commune;
+use App\Models\Region;
 use Illuminate\Http\Request;
 
 class ComunneApiController extends Controller
@@ -85,5 +88,38 @@ class ComunneApiController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function find(Region $region)
+    {
+        $datas= Commune::where('region_id',$region->id)->get();
+        return $datas;
+    }
+
+        /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function findcentre(Commune $commune)
+    {
+        $datas= Centre::where('commune_id',$commune->id)->get();
+        return $datas;
+    }
+
+      /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function findcommune(Centre $centre)
+    {
+        $datas= Comm::where('centre_id',$centre->id)->get();
+        return $datas;
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Centre;
+use GrahamCampbell\ResultType\Result;
 use Illuminate\Http\Request;
 
 class CentreVoteApiController extends Controller
@@ -23,9 +24,17 @@ class CentreVoteApiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Result $request)
     {
-        //
+       $centre=new Centre();
+       $centre->code= $request->code;
+       $centre->libelle= $request->libelle;
+       $centre->commune_id= $request->commune_id;
+       Centre::create($centre);
+       return response()->json([
+        'message' => "Successfully created",
+        'success' => true
+    ], 200);
     }
 
     /**
