@@ -60,7 +60,7 @@ Route::apiResource('comm', CommApiController::class,[
 ]);
 
 Route::resource('candidats', ListElectoralApiController::class,[
-    'only' => ['show','index','destroy','create','store']
+    'only' => ['show','index','destroy','create','store','update']
 ]);
 
 Route::resource('annees', AnneeApiController::class,[

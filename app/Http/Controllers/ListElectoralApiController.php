@@ -8,8 +8,7 @@ use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\FileNotFoundException;
 use Exception;
-
-header("Access-Control-Allow-Methods: *,GET, OPTIONS, POST");
+header("Access-Control-Allow-Methods: GET, OPTIONS, POST, PUT");
 header("Access-Control-Allow-Headers: origin, content-type, accept, x-requested-with, authorization, X-Custom-Header");
 class ListElectoralApiController extends Controller
 {
@@ -103,7 +102,8 @@ class ListElectoralApiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $liste=$request->all();
+        ListeElectoral::find($id)->update($liste);
     }
 
     /**
