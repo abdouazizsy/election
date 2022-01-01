@@ -114,7 +114,7 @@ class ListElectoralApiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        ListeElectoral::find($id)->delete();
     }
 
      /**

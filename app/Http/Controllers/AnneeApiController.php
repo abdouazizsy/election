@@ -74,7 +74,8 @@ class AnneeApiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $annee=$request->all();
+        Annee::find($id)->update($annee);
     }
 
     /**
@@ -85,7 +86,7 @@ class AnneeApiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Annee::find($id)->delete();
     }
 
     /**
