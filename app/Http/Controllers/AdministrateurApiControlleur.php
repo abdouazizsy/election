@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Administrateur;
 use Illuminate\Http\Request;
-header("Access-Control-Allow-Methods: GET, OPTIONS, POST");
+header("Access-Control-Allow-Methods: GET, OPTIONS, POST, PUT");
 class AdministrateurApiControlleur extends Controller
 {
     /**
@@ -35,7 +35,10 @@ class AdministrateurApiControlleur extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $administrateur=new Administrateur();
+       $administrateur->email=$request->email;
+       $administrateur->mdp=$request->mdp;
+       $administrateur->save();
     }
 
     /**

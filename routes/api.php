@@ -66,6 +66,9 @@ Route::resource('candidats', ListElectoralApiController::class,[
 Route::resource('annees', AnneeApiController::class,[
     'only' => ['show','index','destroy','create','store','update']
 ]);
+Route::resource('administrateur', AdministrateurApiControlleur::class,[
+    'only' => ['show','index','destroy','create','store','update']
+]);
 
 Route::get("/arrondissement/findcommune/{centre}", [App\Http\Controllers\ComunneApiController::class, 'findcommune'] )->name('findcommune');
 
