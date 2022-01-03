@@ -113,9 +113,11 @@ class VoterApiController extends Controller
     public function countvotes()
     {
 
-        $user_info = DB::table('voters','liste_electorals')
-                 ->select('listeelectoral_id', DB::raw('count(*) as total'))
-                 ->groupBy('listeelectoral_id.comm_id')
+        $user_info = DB::table('voters')
+                 ->join('liste_electorals', 'liste_electorals.id', '=', 'listeelectoral_id')
+                 ->join('comms', 'comms.id', '=', 'liste_electorals.comm_id')
+                 ->select('liste_electorals.code as NomListe',DB::raw('count(voters.id) as total'),'comms.code as Commune')
+                 ->groupBy('liste_electorals.code','comms.code')
                  ->get();
                  return $user_info;
     }
