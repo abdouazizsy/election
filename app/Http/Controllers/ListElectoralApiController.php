@@ -50,11 +50,6 @@ class ListElectoralApiController extends Controller
         $uniqid = uniqid();
         $file = $folderPath . $uniqid . '.'.$image_type;
         file_put_contents($file, $image_base64);
-
-
-
-
-
         $listeElectoral=new ListeElectoral();
         $listeElectoral->nom_liste=$request->nom_liste;
         $listeElectoral->code=$request->code;

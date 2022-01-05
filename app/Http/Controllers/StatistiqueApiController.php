@@ -90,4 +90,24 @@ class StatistiqueApiController extends Controller
     }
 
 
+    /**
+     * count nombre votant pour chaque region
+     *
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function findcommune_bynameregion(string $region)
+    {
+
+        $user_info = DB::table('comms')
+                 ->join('centres', 'centres.id', '=', 'centre_id')
+                 ->join('communes', 'communes.id', '=', 'centres.commune_id')
+                 ->join('regions', 'regions.id', '=', 'communes.region_id')
+                 ->where('regions.libelle',$region)
+                 ->select('comms.libelle as Libelle')
+                 ->get();
+                 return $user_info;
+    }
+
+
 }
