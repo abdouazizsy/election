@@ -110,4 +110,101 @@ class StatistiqueApiController extends Controller
     }
 
 
+    /**
+     * count nombre inscrit pour commune passer en paramètre
+     *
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function nombre_inscrit_bycommune(string $commune)
+    {
+
+        $user = DB::table('electeurs')
+        ->join('comms', 'comms.id', '=', 'comm_id')
+        ->where('comms.libelle',$commune)
+        ->select(DB::raw('count(electeurs.id) as inscrit_total'))
+        ->groupBy('comms.libelle')
+        ->get();
+        return $user;
+
+
+
+    }
+
+
+
+    /**
+     * count nombre votant pour commune passer en paramètre
+     *
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function nombre_votant_bycommune(string $commune)
+    {
+
+
+        $user_info = DB::table('voters')
+                 ->join('electeurs', 'electeurs.id', '=', 'electeur_id')
+                 ->join('comms', 'comms.id', '=', 'electeurs.comm_id')
+                 ->where('comms.libelle',$commune)
+                 ->select(DB::raw('count(voters.id) as total'))
+                 ->groupBy('comms.libelle')
+                 ->get();
+                 return $user_info;
+
+
+    }
+
+
+
+
+
+    /**
+     * count nombre votant pour region passer en paramètre
+     *
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function nombre_votant_byregion(string $region)
+    {
+        $user_info = DB::table('voters')
+                 ->join('electeurs', 'electeurs.id', '=', 'electeur_id')
+                 ->join('comms', 'comms.id', '=', 'electeurs.comm_id')
+                 ->join('centres', 'centres.id', '=', 'comms.centre_id')
+                 ->join('communes', 'communes.id', '=', 'centres.commune_id')
+                 ->join('regions', 'regions.id', '=', 'communes.region_id')
+                 ->where('regions.libelle',$region)
+                 ->select(DB::raw('count(voters.id) as total'))
+                 ->groupBy('regions.libelle')
+                 ->get();
+                 return $user_info;
+    }
+
+
+
+      /**
+     * count nombre inscrit pour commune passer en paramètre
+     *
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function nombre_inscrit_byregion(string $region)
+    {
+
+        $user = DB::table('electeurs')
+        ->join('comms', 'comms.id', '=', 'comm_id')
+        ->join('centres', 'centres.id', '=', 'comms.centre_id')
+        ->join('communes', 'communes.id', '=', 'centres.commune_id')
+        ->join('regions', 'regions.id', '=', 'communes.region_id')
+        ->where('regions.libelle',$region)
+        ->select(DB::raw('count(electeurs.id) as inscrit_total'))
+        ->groupBy('regions.libelle')
+        ->get();
+        return $user;
+
+
+
+    }
+
+
 }
