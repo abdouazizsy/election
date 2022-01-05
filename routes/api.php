@@ -79,5 +79,5 @@ Route::get("/electeur/{cni}", [App\Http\Controllers\ElecteurApiController::class
 Route::get("count", [App\Http\Controllers\StatistiqueApiController::class, 'countvotes'] )->name('countvotes');
 Route::get("countcc/{commune}", [App\Http\Controllers\StatistiqueApiController::class, 'countvotes_bycommune'] )->name('countvotes_bycommune');
 Route::get("countcr/{region}", [App\Http\Controllers\StatistiqueApiController::class, 'countvotes_byregion'] )->name('countvotes_byregion');
+Route::get("countvr/{region}", [App\Http\Controllers\StatistiqueApiController::class, 'countvotant_byregion'] )->name('countvotant_byregion');
 Route::get("commune/{region}", [App\Http\Controllers\StatistiqueApiController::class, 'findcommune_bynameregion'] )->name('findcommune_bynameregion');
-
