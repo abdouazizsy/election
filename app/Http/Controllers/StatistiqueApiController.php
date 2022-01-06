@@ -197,7 +197,7 @@ class StatistiqueApiController extends Controller
         ->join('communes', 'communes.id', '=', 'centres.commune_id')
         ->join('regions', 'regions.id', '=', 'communes.region_id')
         ->where('regions.libelle',$region)
-        ->select(DB::raw('count(electeurs.id) as inscrit_total'))
+        ->select(DB::raw('count(electeurs.id) as total'))
         ->groupBy('regions.libelle')
         ->get();
         return $user;
