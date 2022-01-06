@@ -104,7 +104,26 @@ class StatistiqueApiController extends Controller
                  ->join('communes', 'communes.id', '=', 'centres.commune_id')
                  ->join('regions', 'regions.id', '=', 'communes.region_id')
                  ->where('regions.libelle',$region)
-                 ->select('comms.code as Libelle')
+                 ->select('comms.libelle as Libelle')
+                 ->get();
+                 return $user_info;
+    }
+
+
+
+
+    /**
+     * Retourne le code de la commune en prenant comme paramètre son libellé
+     *
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function findCodeCommByLibelle(string $commune)
+    {
+
+        $user_info = DB::table('comms')
+                 ->where('comms.libelle',$commune)
+                 ->select('comms.code as Code')
                  ->get();
                  return $user_info;
     }
@@ -123,7 +142,7 @@ class StatistiqueApiController extends Controller
         ->join('comms', 'comms.id', '=', 'comm_id')
         ->where('comms.libelle',$commune)
         ->select(DB::raw('count(electeurs.id) as total'))
-        ->groupBy('comms.libelle')
+        ->groupBy('comms.code')
         ->get();
         return $user;
 
@@ -148,7 +167,7 @@ class StatistiqueApiController extends Controller
                  ->join('comms', 'comms.id', '=', 'electeurs.comm_id')
                  ->where('comms.libelle',$commune)
                  ->select(DB::raw('count(voters.id) as total'))
-                 ->groupBy('comms.libelle')
+                 ->groupBy('comms.code')
                  ->get();
                  return $user_info;
 
@@ -201,8 +220,6 @@ class StatistiqueApiController extends Controller
         ->groupBy('regions.libelle')
         ->get();
         return $user;
-
-
 
     }
 
