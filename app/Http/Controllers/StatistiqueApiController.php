@@ -104,7 +104,7 @@ class StatistiqueApiController extends Controller
                  ->join('communes', 'communes.id', '=', 'centres.commune_id')
                  ->join('regions', 'regions.id', '=', 'communes.region_id')
                  ->where('regions.libelle',$region)
-                 ->select('comms.libelle as Libelle')
+                 ->select('comms.code as Libelle')
                  ->get();
                  return $user_info;
     }
@@ -122,7 +122,7 @@ class StatistiqueApiController extends Controller
         $user = DB::table('electeurs')
         ->join('comms', 'comms.id', '=', 'comm_id')
         ->where('comms.libelle',$commune)
-        ->select(DB::raw('count(electeurs.id) as inscrit_total'))
+        ->select(DB::raw('count(electeurs.id) as total'))
         ->groupBy('comms.libelle')
         ->get();
         return $user;
@@ -183,7 +183,7 @@ class StatistiqueApiController extends Controller
 
 
       /**
-     * count nombre inscrit pour commune passer en paramètre
+     * count nombre inscrit pour region passer en paramètre
      *
      *
      * @return \Illuminate\Http\Response
@@ -197,7 +197,7 @@ class StatistiqueApiController extends Controller
         ->join('communes', 'communes.id', '=', 'centres.commune_id')
         ->join('regions', 'regions.id', '=', 'communes.region_id')
         ->where('regions.libelle',$region)
-        ->select(DB::raw('count(electeurs.id) as inscrit_total'))
+        ->select(DB::raw('count(electeurs.id) as total'))
         ->groupBy('regions.libelle')
         ->get();
         return $user;
