@@ -91,7 +91,7 @@ class StatistiqueApiController extends Controller
 
 
     /**
-     * count nombre votant pour chaque region
+     * Retourne la liste des communes d'une region donnée en paramètre
      *
      *
      * @return \Illuminate\Http\Response
@@ -140,7 +140,7 @@ class StatistiqueApiController extends Controller
 
         $user = DB::table('electeurs')
         ->join('comms', 'comms.id', '=', 'comm_id')
-        ->where('comms.libelle',$commune)
+        ->where('comms.code',$commune)
         ->select(DB::raw('count(electeurs.id) as total'))
         ->groupBy('comms.code')
         ->get();
@@ -165,7 +165,7 @@ class StatistiqueApiController extends Controller
         $user_info = DB::table('voters')
                  ->join('electeurs', 'electeurs.id', '=', 'electeur_id')
                  ->join('comms', 'comms.id', '=', 'electeurs.comm_id')
-                 ->where('comms.libelle',$commune)
+                 ->where('comms.code',$commune)
                  ->select(DB::raw('count(voters.id) as total'))
                  ->groupBy('comms.code')
                  ->get();
