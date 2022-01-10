@@ -10,5 +10,6 @@ class Administrateur extends Model
     protected $fillable=[
         'email',
         'mdp',
+        'role',
     ];
 }

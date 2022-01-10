@@ -71,7 +71,6 @@ Route::resource('administrateur', AdministrateurApiControlleur::class,[
 ]);
 
 Route::get("/arrondissement/findcommune/{centre}", [App\Http\Controllers\ComunneApiController::class, 'findcommune'] )->name('findcommune');
-
 Route::post("/administrateur/{email}/{mdp}", [App\Http\Controllers\AdministrateurApiControlleur::class, 'findAdministrateur'] )->name('findAdministrateur');
 Route::get("/annee/encours", [App\Http\Controllers\AnneeApiController::class, 'findAnneeVote'] )->name('findAnneeVote');
 Route::get("/candidat/{cni}", [App\Http\Controllers\ListElectoralApiController::class, 'findcandidats'] )->name('findcandidats');
@@ -86,3 +85,4 @@ Route::get("votant/{commune}", [App\Http\Controllers\StatistiqueApiController::c
 Route::get("votant/region/{region}", [App\Http\Controllers\StatistiqueApiController::class, 'nombre_votant_byregion'] )->name('nombre_votant_byregion');
 Route::get("inscrit/region/{region}", [App\Http\Controllers\StatistiqueApiController::class, 'nombre_inscrit_byregion'] )->name('nombre_inscrit_byregion');
 Route::get("codeCommune/{commune}", [App\Http\Controllers\StatistiqueApiController::class, 'findCodeCommByLibelle'] )->name('findCodeCommByLibelle');
+Route::get("/adminis/{email}", [App\Http\Controllers\AdministrateurApiControlleur::class, 'findAdministrateurwithrole'] )->name('findAdministrateurwithrole');

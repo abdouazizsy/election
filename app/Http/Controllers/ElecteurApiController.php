@@ -37,18 +37,26 @@ class ElecteurApiController extends Controller
     public function store(Request $request)
     {
 
-        $electeur=new Electeur();
-        $electeur->prenom=$request->prenom;
-        $electeur->nom=$request->nom;
-        $electeur->datenaissance=$request->datenaissance;
-        $electeur->adresse=$request->adresse;
-        $electeur->cni=$request->cni;
-        $electeur->comm_id=$request->comm_id;
-        $electeur->save();
-        return response()->json([
-         'message' => "Successfully created",
-         'success' => true
-     ], 200);
+        $datas= Electeur::where('cni',$request->cni)->first();
+        if($datas)
+        {
+            return 1;
+        }
+        else
+        {
+            $electeur=new Electeur();
+            $electeur->prenom=$request->prenom;
+            $electeur->nom=$request->nom;
+            $electeur->datenaissance=$request->datenaissance;
+            $electeur->adresse=$request->adresse;
+            $electeur->cni=$request->cni;
+            $electeur->comm_id=$request->comm_id;
+            $electeur->save();
+            return response()->json([
+             'message' => "Successfully created",
+             'success' => true
+         ], 200);
+        }
     }
 
     /**

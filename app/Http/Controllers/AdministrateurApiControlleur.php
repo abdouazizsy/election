@@ -14,7 +14,8 @@ class AdministrateurApiControlleur extends Controller
      */
     public function index()
     {
-        //
+        $datas= Administrateur::all();
+        return $datas;
     }
 
     /**
@@ -38,6 +39,7 @@ class AdministrateurApiControlleur extends Controller
        $administrateur=new Administrateur();
        $administrateur->email=$request->email;
        $administrateur->mdp=$request->mdp;
+       $administrateur->role=$request->role;
        $administrateur->save();
     }
 
@@ -49,7 +51,7 @@ class AdministrateurApiControlleur extends Controller
      */
     public function show($id)
     {
-        //
+        return $id;
     }
 
     /**
@@ -83,12 +85,25 @@ class AdministrateurApiControlleur extends Controller
      */
     public function destroy($id)
     {
-        //
+        Administrateur::find($id)->delete();
     }
+
     public function findAdministrateur(string $email,string $mdp)
     {
 
         $datas= Administrateur::where('email',$email)->where('mdp',$mdp)->first();
+        return $datas;
+    }
+ /**
+     * Remove the specified resource from storage.
+     *
+     * @param  string  $email
+     * @return \Illuminate\Http\Response
+     */
+    public function findAdministrateurwithrole(string $email)
+    {
+
+        $datas= Administrateur::where('email',$email)->first();
         return $datas;
     }
 }
