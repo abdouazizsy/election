@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Citoyens;
 use Illuminate\Http\Request;
 
 class CitoyensApiController extends Controller
@@ -13,7 +14,8 @@ class CitoyensApiController extends Controller
      */
     public function index()
     {
-        //
+        $data=Citoyens::all();
+        return $data;
     }
 
     /**
@@ -43,9 +45,9 @@ class CitoyensApiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Citoyens $citoyens)
     {
-        //
+        return $citoyens;
     }
 
     /**
@@ -81,4 +83,10 @@ class CitoyensApiController extends Controller
     {
         //
     }
+
+
+
+
+
+
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Citoyens;
 use App\Models\Electeur;
 use Illuminate\Http\Request;
 header("Access-Control-Allow-Methods: GET, OPTIONS, POST, PUT");
@@ -44,6 +45,7 @@ class ElecteurApiController extends Controller
         }
         else
         {
+
             $electeur=new Electeur();
             $electeur->prenom=$request->prenom;
             $electeur->nom=$request->nom;
@@ -120,6 +122,29 @@ class ElecteurApiController extends Controller
         }
         else{
             return [];
+        }
+
+    }
+
+
+
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  string  $cni
+     * @return \Illuminate\Http\Response
+     */
+    public function findcitoyens(string $cni)
+    {
+        $citoyens=Citoyens::where('cni',$cni)->first();
+        if($citoyens)
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
         }
 
     }

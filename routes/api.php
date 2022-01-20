@@ -75,6 +75,7 @@ Route::post("/administrateur/{email}/{mdp}", [App\Http\Controllers\Administrateu
 Route::get("/annee/encours", [App\Http\Controllers\AnneeApiController::class, 'findAnneeVote'] )->name('findAnneeVote');
 Route::get("/candidat/{cni}", [App\Http\Controllers\ListElectoralApiController::class, 'findcandidats'] )->name('findcandidats');
 Route::get("/electeur/{cni}", [App\Http\Controllers\ElecteurApiController::class, 'findelecteur'] )->name('findelecteur');
+Route::get("/citoyens/{cni}", [App\Http\Controllers\ElecteurApiController::class, 'findcitoyens'] )->name('findcitoyens');
 Route::get("count", [App\Http\Controllers\StatistiqueApiController::class, 'countvotes'] )->name('countvotes');
 Route::get("countcc/{commune}", [App\Http\Controllers\StatistiqueApiController::class, 'countvotes_bycommune'] )->name('countvotes_bycommune');
 Route::get("countcr/{region}", [App\Http\Controllers\StatistiqueApiController::class, 'countvotes_byregion'] )->name('countvotes_byregion');
