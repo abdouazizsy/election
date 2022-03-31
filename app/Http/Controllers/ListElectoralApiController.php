@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Electeur;
+use App\Custom\FileHelper;
 use App\Models\ListeElectoral;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
@@ -20,7 +21,7 @@ class ListElectoralApiController extends Controller
     public function index()
     {
         $datas=ListeElectoral::with('comm')->get();
-        return $datas;
+        return response()->json($datas,200);
     }
 
     /**
@@ -41,31 +42,17 @@ class ListElectoralApiController extends Controller
      */
     public function store(Request $request)
     {
-        $folderPath = "C:/xamp/htdocs/livecoding/storage/app/profils/"; //path location
 
-        $image_parts = explode(";base64,", $request->photo);
-        $image_type_aux = explode("image/", $image_parts[0]);
-        $image_type = $image_type_aux[1];
-        $image_base64 = base64_decode($image_parts[1]);
-        $uniqid = uniqid();
-        $file = $folderPath . $uniqid . '.'.$image_type;
-        file_put_contents($file, $image_base64);
+        $listeElectoral=new ListeElectoral($request->all());
 
-
-
-
-
-        $listeElectoral=new ListeElectoral();
-        $listeElectoral->nom_liste=$request->nom_liste;
-        $listeElectoral->code=$request->code;
-        $listeElectoral->representant_nom=$request->representant_nom;
-        $listeElectoral->representant_prenom=$request->representant_prenom;
-        $listeElectoral->representant_cni=$request->representant_cni;
-        $listeElectoral->representant_adresse=$request->representant_adresse;
-        $listeElectoral->representant_datenaissance=$request->representant_datenaissance;
-        $listeElectoral->representant_datenaissance=$request->representant_datenaissance;
-        $listeElectoral->comm_id=$request->comm_id;
-        $listeElectoral->photo = $file;
+       if ($request->exists('photo')) {
+        // convertir la photo en base64
+        $photoFile = FileHelper::getFileFromBase64($request->photo);
+        $extension = $photoFile->guessExtension();
+        $filename = $request->code . '.' . $extension;
+        $photoFile->storeAs('candidats', $filename);
+        $listeElectoral->photo = $filename;
+    }
         $listeElectoral->save();
 
 

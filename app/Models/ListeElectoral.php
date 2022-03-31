@@ -18,6 +18,12 @@ class ListeElectoral extends Model
         'photo',
         'comm_id',
     ];
+    protected $appends = ['photo_path'];
+
+    public function getPhotoPathAttribute()
+    {
+        return request()->getSchemeAndHttpHost() . '/uploads/candidats/' . $this->photo;
+    }
 
      /**
      * Get the representant that owns the commune
