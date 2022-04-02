@@ -87,3 +87,5 @@ Route::get("votant/region/{region}", [App\Http\Controllers\StatistiqueApiControl
 Route::get("inscrit/region/{region}", [App\Http\Controllers\StatistiqueApiController::class, 'nombre_inscrit_byregion'] )->name('nombre_inscrit_byregion');
 Route::get("codeCommune/{commune}", [App\Http\Controllers\StatistiqueApiController::class, 'findCodeCommByLibelle'] )->name('findCodeCommByLibelle');
 Route::get("/adminis/{email}", [App\Http\Controllers\AdministrateurApiControlleur::class, 'findAdministrateurwithrole'] )->name('findAdministrateurwithrole');
+
+Route::get("/candidatInfos/{id}", [App\Http\Controllers\ListElectoralApiController::class, 'findCandidate'] )->name('findcandidate');

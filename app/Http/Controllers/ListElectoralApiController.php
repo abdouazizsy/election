@@ -5,8 +5,6 @@ use App\Models\Electeur;
 use App\Custom\FileHelper;
 use App\Models\ListeElectoral;
 use Illuminate\Http\Request;
-use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\FileNotFoundException;
 use Exception;
 header("Access-Control-Allow-Methods: GET, OPTIONS, POST, PUT");
@@ -129,5 +127,10 @@ class ListElectoralApiController extends Controller
 
     }
 
+    public function findCandidate(int $id)
+    {
+
+        return ListeElectoral::where('id',$id)->first();
+    }
 
 }
