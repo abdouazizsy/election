@@ -130,7 +130,7 @@ class ListElectoralApiController extends Controller
     public function findCandidate(int $id)
     {
 
-        return ListeElectoral::where('id',$id)->first();
+        return ListeElectoral::with('comm')->where('id',$id)->first();
     }
 
 }
